@@ -1,0 +1,8 @@
+# CODEOWNERS
+
+# The @dev-team is the default owner for everything in the repo.
+# Cloudbees Jenkins will update this with team selection on the creation. 
+#_{BU_TEAM}_
+
+# The 'devops' directory is owned by hertzcorp @devops team.
+/devops/ @hertzcorp/devops_team
