@@ -1,0 +1,12 @@
+logging:
+  level:
+    com.hertz.api: DEBUG
+
+com:
+  hertz:
+    digital:
+      msf:
+        security:
+          jwt:
+            enabled: false
+            token: unauthenticated

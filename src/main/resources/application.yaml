@@ -1,0 +1,22 @@
+springdoc:
+  api-docs:
+    enabled: false
+
+logging:
+  level:
+    com.hertz.api: ERROR
+
+com.hertz.digital.msf:
+  security:
+    jwt:
+      enabled: true
+
+spring:
+  profiles:
+    include:
+      - management
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://api.dev.htz-digital.use1.hertz.io/api/auth/uaa/.well-known/jwks.json

@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.hertz.digital.msf</groupId>
+    <artifactId>msf-service-parent</artifactId>
+    <version>4.1.0</version>
+  </parent>
+
+  <name>rates-rm-rates-update-service</name>
+  <groupId>com.hertz.api</groupId>
+  <artifactId>rates-rm-rates-update-service</artifactId>
+  <version>${revision}</version>
+  <packaging>jar</packaging>
+  <description>Project file for rates-rm-rates-update-service</description>
+
+  <properties>
+    <!-- used by groovy script to generate server/client code based on openapi-->
+    <openapi-codegen.server.this-service-id.artifact>rates-bulk-update-api-spec:LATEST</openapi-codegen.server.this-service-id.artifact>
+    <!-- dependencies versions -->
+    <logging-common-lib.version>2.38.0</logging-common-lib.version>
+  </properties>
+
+  <dependencies>
+    <!-- add service specific dependencies here -->
+    <dependency>
+      <groupId>com.hertz.api</groupId>
+      <artifactId>htzd-logging-common-lib</artifactId>
+      <version>${logging-common-lib.version}</version>
+    </dependency>
+  </dependencies>
+  
+</project>

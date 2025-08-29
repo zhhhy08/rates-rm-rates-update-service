@@ -84,3 +84,6 @@ Temporary Items
 *.icloud
 
 # please add more
+**/.jfrog/*
+./tmpjenkins
+**/tmpjenkins/*

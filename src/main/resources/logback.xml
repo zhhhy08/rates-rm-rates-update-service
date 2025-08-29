@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <include resource="com/hertz/api/logging/logback/base.xml"/>
+  <!-- creates 'CONSOLE' appender with defaults (can be overriden through logback properties) -->
+  <include resource="com/hertz/api/logging/logback/console-appender.xml"/>
+
+  <root level="ERROR">
+    <appender-ref ref="CONSOLE"/>
+  </root>
+</configuration>

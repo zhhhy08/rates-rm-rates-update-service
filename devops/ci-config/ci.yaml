@@ -1,0 +1,24 @@
+domain: rates-update
+serviceName: rates-rm-rates-update-service
+bu: rates-rm
+isLib: false
+env: dev
+technology:
+  name: java
+  sdk: jdk
+  version: 17
+  buildTool: maven
+  buildToolVersion: 3.2
+  artifactType: jar
+  isContainerized: true
+sonarqube:
+  exclusions:  'bin,src/test'
+  coverageExclusions:  '**/*Config.*,**/*Configuration.*,**/model/**/*,**/dto/**/*,**/*Application.*,**/*Exception.*,**/*Properties.*,**/*Error.*'
+  duplicateCodeExclusions: '**/model/**/*'
+  sonarLibraries: '**/maven-dependencies/lombok*'
+  javaBinaries:  'target'
+  junitReportPaths:  'target/surefire-reports'
+  javaCoveragePlugin: 'jacoco'
+  coverageJacocoXmlReportsPaths: 'target/jacoco.xml'
+  sourceEncoding: 'UTF-8'
+  failQualityGate: false
