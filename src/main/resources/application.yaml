@@ -1,3 +1,30 @@
+configfile: ${rates-rum.configfile}
+configname: ${rates-rum.configname}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - health
+        - metrics
+        - info
+  endpoint:
+    health:
+      show-details: always
+  info:
+    git:
+      mode: full
+  metrics:
+    tags:
+      service: "rates-rum-webservice"
+      team: "rates-team"
+      environment: ${config.env:local}
+    export:
+      dynatrace:
+        uri: ${rates-rum.dynatrace.api.url}
+        api-token: ${rates-rum.dynatrace.api.token}
+
 springdoc:
   api-docs:
     enabled: false
@@ -13,8 +40,23 @@ com.hertz.digital.msf:
 
 spring:
   profiles:
+    active: ${config.env:local}
     include:
       - management
+  datasource:
+    url: ${rates-update.spring.datasource.url:jdbc:oracle:thin:@10.233.25.135:1521:ramqa}
+    username: ${rates-update.spring.datasource.username:prod}
+    password: ${rates-update.spring.datasource.password:qual_cl0ne}
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    hibernate:
+      use-new-id-generator-mappings: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.Oracle12cDialect
   security:
     oauth2:
       resourceserver:

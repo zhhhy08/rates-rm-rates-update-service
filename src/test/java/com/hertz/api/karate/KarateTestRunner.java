@@ -2,7 +2,7 @@ package com.hertz.api.karate;
 
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
-import com.hertz.api.HertzMsTemplateApplication;
+import com.hertz.api.RatesUpdateServiceApplication;
 import com.intuit.karate.Results;
 import com.intuit.karate.junit5.Karate;
 import java.io.File;
@@ -19,7 +19,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.test.context.ActiveProfiles;
 
 @ActiveProfiles("test")
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = {HertzMsTemplateApplication.class})
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = {RatesUpdateServiceApplication.class})
 public class KarateTestRunner {
 
   @Autowired

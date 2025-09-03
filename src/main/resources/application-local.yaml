@@ -1,4 +1,46 @@
-# only use to override values in application.yaml for running locally
+# Local development configuration - copied from application-test.yaml
+configfile: config/hertzconfig.xml
+configname: qual
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - health
+        - metrics
+        - info
+        - heapdump
+        - threaddump
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      service: "rates-update-service"
+      team: "rates-team"
+      environment: "local"
+    export:
+      dynatrace:
+        uri: ${rates-rum.dynatrace.api.url}
+        api-token: ${rates-rum.dynatrace.api.token}
+
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@10.233.25.135:1521:ramqa
+    username: prod
+    password: qual_cl0ne
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    hibernate:
+      use-new-id-generator-mappings: false
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.Oracle12cDialect
+
 logging:
   level:
     com.hertz.api: DEBUG

@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.hertz.digital.msf</groupId>
     <artifactId>msf-service-parent</artifactId>
-    <version>4.1.0</version>
+    <version>5.4.0</version>
   </parent>
 
   <name>rates-rm-rates-update-service</name>
@@ -16,19 +16,139 @@
   <description>Project file for rates-rm-rates-update-service</description>
 
   <properties>
+    <!-- Java version -->
+    <java.version>21</java.version>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.release>21</maven.compiler.release>
     <!-- used by groovy script to generate server/client code based on openapi-->
     <openapi-codegen.server.this-service-id.artifact>rates-bulk-update-api-spec:LATEST</openapi-codegen.server.this-service-id.artifact>
     <!-- dependencies versions -->
     <logging-common-lib.version>2.38.0</logging-common-lib.version>
+    <checkstyle.skip>true</checkstyle.skip>
   </properties>
 
   <dependencies>
     <!-- add service specific dependencies here -->
+    <dependency>
+      <groupId>com.hertz.rates.common</groupId>
+      <artifactId>rates-common-lib</artifactId>
+      <version>1.9.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-log4j2</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>software.amazon.awssdk</groupId>
+      <artifactId>ssm</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web-services</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.database.jdbc</groupId>
+      <artifactId>ojdbc8</artifactId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-data-jdbc</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-vfs2</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+    <dependency>
+      <groupId>wsdl4j</groupId>
+      <artifactId>wsdl4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>1.6.14</version>
+    </dependency>
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-core</artifactId>
+      <version>1.10.9</version>
+    </dependency>
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-dynatrace</artifactId>
+      <version>1.10.9</version>
+    </dependency>
     <dependency>
       <groupId>com.hertz.api</groupId>
       <artifactId>htzd-logging-common-lib</artifactId>
       <version>${logging-common-lib.version}</version>
     </dependency>
   </dependencies>
-  
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <source>21</source>
+          <target>21</target>
+          <compilerArgs>
+            <arg>--enable-preview</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>com.hertz.api.RatesUpdateServiceApplication</mainClass>
+          <compilerArgs>
+            <arg>--enable-preview</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <artifactId>bom</artifactId>
+        <groupId>software.amazon.awssdk</groupId>
+        <scope>import</scope>
+        <type>pom</type>
+        <version>2.19.33</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>
