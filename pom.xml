@@ -22,7 +22,7 @@
     <maven.compiler.target>21</maven.compiler.target>
     <maven.compiler.release>21</maven.compiler.release>
     <!-- used by groovy script to generate server/client code based on openapi-->
-    <openapi-codegen.server.this-service-id.artifact>rates-bulk-update-api-spec:LATEST</openapi-codegen.server.this-service-id.artifact>
+    <openapi-codegen.server.ratesupdate.artifact>rates-bulk-update-api-spec:1.0.0-SNAPSHOT</openapi-codegen.server.ratesupdate.artifact>
     <!-- dependencies versions -->
     <logging-common-lib.version>2.38.0</logging-common-lib.version>
     <checkstyle.skip>true</checkstyle.skip>
@@ -90,11 +90,6 @@
     <dependency>
       <groupId>org.glassfish.jaxb</groupId>
       <artifactId>jaxb-runtime</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springdoc</groupId>
-      <artifactId>springdoc-openapi-ui</artifactId>
-      <version>1.6.14</version>
     </dependency>
     <dependency>
       <groupId>io.micrometer</groupId>

@@ -2,31 +2,32 @@ package com.hertz.api.controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import com.hertz.api.drivers.UpdateDriver;
-import com.hertz.api.dto.RatesUpdateRequest;
-import com.hertz.api.dto.RatesUpdateResponse;
+import com.hertz.api.models.RatesUpdateRequest;
+import com.hertz.api.models.RatesUpdateResponse;
 import com.hertz.rates.common.utils.logging.HertzLogger;
 import com.hertz.api.metrics.RumMetrics;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import io.micrometer.core.instrument.MeterRegistry;
 import java.util.concurrent.TimeUnit;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/rate-ops")
-@Tag(name = "Rate Operations", description = "Endpoints for rate operations")
-public class RatesUpdateController {
+public class RatesUpdateController implements RateOperationsApi {
     private static final HertzLogger logger = new HertzLogger(RatesUpdateController.class);
     
     @Autowired
     private MeterRegistry meterRegistry;
     
-    @PostMapping("/bulk-update")
-    @Operation(summary = "Perform Bulk Rate Update", description = "Process bulk rate updates")
-    public RatesUpdateResponse performRatesUpdate(@RequestBody RatesUpdateRequest request, HttpServletRequest httpRequest) {
-        logger.info("Received bulk update request: " + request.toString());
+    @Override
+    public ResponseEntity<RatesUpdateResponse> performRatesUpdate(@Valid @RequestBody RatesUpdateRequest ratesUpdateRequest) throws Exception {
+        logger.info("Received bulk update request: " + ratesUpdateRequest.toString());
         
+        // Get the current HTTP request for IP extraction
+        HttpServletRequest httpRequest = getCurrentHttpRequest();
         String remoteIP = "NO_IP_FOUND";
         
         try {
@@ -51,7 +52,7 @@ public class RatesUpdateController {
 
         UpdateDriver updateDriver = new UpdateDriver(meterRegistry);
 
-        String requestString = request.getRequestString();
+        String requestString = ratesUpdateRequest.getRequestString();
         String responseString;
         
         // Record timing for the update operation
@@ -76,6 +77,10 @@ public class RatesUpdateController {
 
         RatesUpdateResponse response = new RatesUpdateResponse();
         response.setResponseMessage(responseString);
-        return response;
+        return ResponseEntity.ok(response);
+    }
+
+    private HttpServletRequest getCurrentHttpRequest() {
+        return ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
     }
 }
