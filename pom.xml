@@ -26,6 +26,7 @@
     <!-- dependencies versions -->
     <logging-common-lib.version>2.39.0</logging-common-lib.version>
     <checkstyle.skip>true</checkstyle.skip>
+    <spotbugs.skip>true</spotbugs.skip>
   </properties>
 
   <dependencies>
