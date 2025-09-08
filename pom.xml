@@ -22,7 +22,7 @@
     <maven.compiler.target>21</maven.compiler.target>
     <maven.compiler.release>21</maven.compiler.release>
     <!-- used by groovy script to generate server/client code based on openapi-->
-    <openapi-codegen.server.ratesupdate.artifact>rates-bulk-update-api-spec:1.0.0-SNAPSHOT</openapi-codegen.server.ratesupdate.artifact>
+    <openapi-codegen.server.ratesupdate.artifact>rates-bulk-update-api-spec:1.2.0</openapi-codegen.server.ratesupdate.artifact>
     <!-- dependencies versions -->
     <logging-common-lib.version>2.39.0</logging-common-lib.version>
     <checkstyle.skip>true</checkstyle.skip>
