@@ -24,7 +24,7 @@
     <!-- used by groovy script to generate server/client code based on openapi-->
     <openapi-codegen.server.ratesupdate.artifact>rates-bulk-update-api-spec:1.0.0-SNAPSHOT</openapi-codegen.server.ratesupdate.artifact>
     <!-- dependencies versions -->
-    <logging-common-lib.version>2.38.0</logging-common-lib.version>
+    <logging-common-lib.version>2.39.0</logging-common-lib.version>
     <checkstyle.skip>true</checkstyle.skip>
   </properties>
 
@@ -117,9 +117,6 @@
         <configuration>
           <source>21</source>
           <target>21</target>
-          <compilerArgs>
-            <arg>--enable-preview</arg>
-          </compilerArgs>
         </configuration>
       </plugin>
       <plugin>
@@ -127,9 +124,6 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
           <mainClass>com.hertz.api.RatesUpdateServiceApplication</mainClass>
-          <compilerArgs>
-            <arg>--enable-preview</arg>
-          </compilerArgs>
         </configuration>
       </plugin>
     </plugins>

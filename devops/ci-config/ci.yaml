@@ -6,7 +6,7 @@ env: dev
 technology:
   name: java
   sdk: jdk
-  version: 17
+  version: 21
   buildTool: maven
   buildToolVersion: 3.2
   artifactType: jar
