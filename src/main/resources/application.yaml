@@ -15,15 +15,18 @@ management:
   info:
     git:
       mode: full
-  metrics:
-    tags:
-      service: "rates-rum-webservice"
-      team: "rates-team"
-      environment: ${config.env:local}
-    export:
-      dynatrace:
+  dynatrace:
+    metrics:
+      export:
         uri: ${rates-rum.dynatrace.api.url}
         api-token: ${rates-rum.dynatrace.api.token}
+        v2:
+          metric-key-prefix: "rates-update-service"
+  metrics:
+    tags:
+      service: "rates-update-service"
+      team: "rates-team"
+      environment: ${config.env:local}
 
 springdoc:
   api-docs:

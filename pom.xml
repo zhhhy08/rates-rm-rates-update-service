@@ -95,12 +95,12 @@
     <dependency>
       <groupId>io.micrometer</groupId>
       <artifactId>micrometer-core</artifactId>
-      <version>1.10.9</version>
+      <!-- No version specified - inherit from MSF parent -->
     </dependency>
     <dependency>
       <groupId>io.micrometer</groupId>
       <artifactId>micrometer-registry-dynatrace</artifactId>
-      <version>1.10.9</version>
+      <!-- No version specified - inherit from MSF parent -->
     </dependency>
     <dependency>
       <groupId>com.hertz.api</groupId>

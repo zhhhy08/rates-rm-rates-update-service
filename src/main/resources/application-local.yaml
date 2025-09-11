@@ -15,15 +15,18 @@ management:
   endpoint:
     health:
       show-details: always
+  dynatrace:
+    metrics:
+      export:
+        uri: "https://tar68820.live.dynatrace.com/api/v2/metrics/ingest"
+        api-token:
+        v2:
+          metric-key-prefix: "rates-update-service"
   metrics:
     tags:
       service: "rates-update-service"
       team: "rates-team"
       environment: "local"
-    export:
-      dynatrace:
-        uri: ${rates-rum.dynatrace.api.url}
-        api-token: ${rates-rum.dynatrace.api.token}
 
 spring:
   datasource:
