@@ -13,10 +13,7 @@ import com.hertz.rates.common.utils.logging.HertzLogger;
  * 
  * Description: Defines RatesUpdateServiceApplication SpringBoot class for rates update service.
  */
-@SpringBootApplication(scanBasePackages = {"com.hertz.rates"}, 
-                      exclude = {DataSourceAutoConfiguration.class, 
-                                HibernateJpaAutoConfiguration.class,
-                                com.hertz.digital.msf.autoconfigure.OpenApiAutoConfiguration.class})
+@SpringBootApplication(exclude = {com.hertz.digital.msf.autoconfigure.OpenApiAutoConfiguration.class})
 @EnableConfigurationProperties
 public class RatesUpdateServiceApplication implements CommandLineRunner {
 

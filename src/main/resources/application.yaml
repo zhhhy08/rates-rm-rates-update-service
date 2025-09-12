@@ -52,14 +52,14 @@ spring:
     password: ${rates-update.spring.datasource.password:qual_cl0ne}
     driver-class-name: oracle.jdbc.OracleDriver
   jpa:
-    database-platform: org.hibernate.dialect.Oracle12cDialect
+    database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
       use-new-id-generator-mappings: false
     show-sql: true
     properties:
       hibernate:
         format_sql: false
-        dialect: org.hibernate.dialect.Oracle12cDialect
+        dialect: org.hibernate.dialect.OracleDialect
   security:
     oauth2:
       resourceserver:
